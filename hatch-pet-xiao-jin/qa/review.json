@@ -1,0 +1,962 @@
+{
+  "ok": true,
+  "frames_root": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames",
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "idle",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23258,
+          "bbox": [
+            18,
+            5,
+            173,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 474
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23083,
+          "bbox": [
+            17,
+            5,
+            174,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 418
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22346,
+          "bbox": [
+            22,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 396
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22252,
+          "bbox": [
+            22,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 447
+        },
+        {
+          "index": 4,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21653,
+          "bbox": [
+            22,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 457
+        },
+        {
+          "index": 5,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22967,
+          "bbox": [
+            17,
+            5,
+            175,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 492
+        }
+      ]
+    },
+    {
+      "state": "running-right",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20452,
+          "bbox": [
+            5,
+            25,
+            187,
+            183
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 532
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20560,
+          "bbox": [
+            5,
+            23,
+            187,
+            184
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 587
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20517,
+          "bbox": [
+            5,
+            21,
+            187,
+            186
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 599
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19310,
+          "bbox": [
+            5,
+            25,
+            187,
+            183
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 491
+        },
+        {
+          "index": 4,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18790,
+          "bbox": [
+            5,
+            26,
+            187,
+            181
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 494
+        },
+        {
+          "index": 5,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20601,
+          "bbox": [
+            5,
+            17,
+            187,
+            190
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 537
+        },
+        {
+          "index": 6,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20751,
+          "bbox": [
+            5,
+            19,
+            187,
+            188
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 576
+        },
+        {
+          "index": 7,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20767,
+          "bbox": [
+            5,
+            21,
+            187,
+            187
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 581
+        }
+      ]
+    },
+    {
+      "state": "running-left",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23223,
+          "bbox": [
+            5,
+            17,
+            187,
+            190
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 582
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 25501,
+          "bbox": [
+            5,
+            9,
+            187,
+            199
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 664
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21185,
+          "bbox": [
+            5,
+            19,
+            187,
+            188
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 609
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18633,
+          "bbox": [
+            5,
+            27,
+            187,
+            181
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 456
+        },
+        {
+          "index": 4,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18504,
+          "bbox": [
+            5,
+            26,
+            187,
+            181
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 475
+        },
+        {
+          "index": 5,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19402,
+          "bbox": [
+            5,
+            23,
+            187,
+            184
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 533
+        },
+        {
+          "index": 6,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 14572,
+          "bbox": [
+            5,
+            37,
+            187,
+            170
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 413
+        },
+        {
+          "index": 7,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20767,
+          "bbox": [
+            5,
+            21,
+            187,
+            187
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 581
+        }
+      ]
+    },
+    {
+      "state": "waving",
+      "expected_frames": 4,
+      "actual_frames": 4,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waving/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24218,
+          "bbox": [
+            9,
+            5,
+            182,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 440
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waving/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24598,
+          "bbox": [
+            5,
+            5,
+            186,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 413
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waving/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23364,
+          "bbox": [
+            12,
+            5,
+            180,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 374
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waving/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22758,
+          "bbox": [
+            12,
+            5,
+            179,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 422
+        }
+      ]
+    },
+    {
+      "state": "jumping",
+      "expected_frames": 5,
+      "actual_frames": 5,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21194,
+          "bbox": [
+            5,
+            27,
+            187,
+            180
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 444
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21505,
+          "bbox": [
+            5,
+            10,
+            187,
+            197
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 431
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22719,
+          "bbox": [
+            5,
+            15,
+            187,
+            193
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 485
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21978,
+          "bbox": [
+            9,
+            5,
+            182,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 473
+        },
+        {
+          "index": 4,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23466,
+          "bbox": [
+            5,
+            13,
+            187,
+            195
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 485
+        }
+      ]
+    },
+    {
+      "state": "failed",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22671,
+          "bbox": [
+            16,
+            5,
+            175,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 419
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22592,
+          "bbox": [
+            13,
+            5,
+            178,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 406
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24537,
+          "bbox": [
+            5,
+            7,
+            187,
+            201
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 493
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 16765,
+          "bbox": [
+            5,
+            42,
+            187,
+            165
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 327
+        },
+        {
+          "index": 4,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22089,
+          "bbox": [
+            20,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 436
+        },
+        {
+          "index": 5,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21686,
+          "bbox": [
+            22,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 411
+        },
+        {
+          "index": 6,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23916,
+          "bbox": [
+            13,
+            5,
+            178,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 506
+        },
+        {
+          "index": 7,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19756,
+          "bbox": [
+            5,
+            33,
+            187,
+            174
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 469
+        }
+      ]
+    },
+    {
+      "state": "waiting",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19499,
+          "bbox": [
+            22,
+            5,
+            170,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 322
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18778,
+          "bbox": [
+            22,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 314
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21275,
+          "bbox": [
+            10,
+            5,
+            182,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 361
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18933,
+          "bbox": [
+            31,
+            5,
+            161,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 284
+        },
+        {
+          "index": 4,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 18966,
+          "bbox": [
+            24,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 328
+        },
+        {
+          "index": 5,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20071,
+          "bbox": [
+            19,
+            5,
+            173,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 391
+        }
+      ]
+    },
+    {
+      "state": "running",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23870,
+          "bbox": [
+            12,
+            5,
+            180,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 464
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22851,
+          "bbox": [
+            13,
+            5,
+            179,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 436
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 27121,
+          "bbox": [
+            5,
+            6,
+            187,
+            202
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 609
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22029,
+          "bbox": [
+            21,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 420
+        },
+        {
+          "index": 4,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21764,
+          "bbox": [
+            23,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 443
+        },
+        {
+          "index": 5,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22878,
+          "bbox": [
+            14,
+            5,
+            178,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 507
+        }
+      ]
+    },
+    {
+      "state": "review",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21476,
+          "bbox": [
+            27,
+            5,
+            165,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 456
+        },
+        {
+          "index": 1,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20787,
+          "bbox": [
+            26,
+            5,
+            165,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 415
+        },
+        {
+          "index": 2,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19631,
+          "bbox": [
+            33,
+            5,
+            159,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 424
+        },
+        {
+          "index": 3,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22961,
+          "bbox": [
+            21,
+            5,
+            170,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 514
+        },
+        {
+          "index": 4,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20072,
+          "bbox": [
+            29,
+            5,
+            163,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 405
+        },
+        {
+          "index": 5,
+          "file": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21998,
+          "bbox": [
+            24,
+            5,
+            167,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 471
+        }
+      ]
+    }
+  ]
+}

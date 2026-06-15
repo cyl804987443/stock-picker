@@ -1,0 +1,74 @@
+<h2>两个问题的回应 & 方案调整</h2>
+
+<div class="section">
+  <h3>问题一：本地数据库会不会越存越大？</h3>
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px">
+    <p style="font-size:14px"><strong>算一下账：</strong></p>
+    <div style="background:white; border-radius:8px; padding:14px; margin:10px 0; border:1px solid #e2e8f0">
+      <table style="width:100%; font-size:13px; border-collapse:collapse">
+        <tr style="border-bottom:1px solid #e2e8f0">
+          <th style="text-align:left; padding:6px">数据表</th>
+          <th style="text-align:right; padding:6px">每年增量</th>
+        </tr>
+        <tr style="border-bottom:1px solid #f1f5f9">
+          <td style="padding:6px">📊 stock_cache（日线缓存）</td>
+          <td style="text-align:right; padding:6px">~60 MB（5000只×60日）</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f1f5f9">
+          <td style="padding:6px">📋 screening_results（选股结果）</td>
+          <td style="text-align:right; padding:6px">~50 MB/年</td>
+        </tr>
+        <tr>
+          <td style="padding:6px; font-weight:600">总计</td>
+          <td style="text-align:right; padding:6px"><strong>~110 MB/年</strong></td>
+        </tr>
+      </table>
+    </div>
+    <p style="font-size:14px">放个10年也就 1GB，完全不用担心。而且可以加一个自动清理策略：</p>
+    <ul style="font-size:13px">
+      <li>日线缓存自动保留最近120个交易日</li>
+      <li>选股结果保留最近365天，更早的归档</li>
+      <li>以上都可在设置页面配置</li>
+    </ul>
+    <p style="margin-top:8px; padding:8px 12px; background:#f0fdf4; border-radius:6px; font-size:13px">
+      ✅ <strong>结论</strong>：SQLite完全够用，不用换数据库
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>问题二：收盘后跑一次复盘，非常合理</h3>
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px">
+    <p style="font-size:14px">更新后的每日运行流程：</p>
+    <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px">
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+        <span style="background:#059669; color:white; padding:6px 12px; border-radius:6px; font-size:12px">⏰ 7:00</span>
+        <span style="color:#475569; font-size:13px">→ 运行非竞价类战法（底部爆量、量窒息、一进二、反包...）</span>
+        <span style="background:#d1d5db; font-size:11px; padding:2px 8px; border-radius:4px">当日预选</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+        <span style="background:#2563eb; color:white; padding:6px 12px; border-radius:6px; font-size:12px">⏰ 9:25</span>
+        <span style="color:#475569; font-size:13px">→ 运行竞价类战法（三一模式、竞价爆量、竞价弱转强）</span>
+        <span style="background:#d1d5db; font-size:11px; padding:2px 8px; border-radius:4px">竞价选股</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+        <span style="background:#dc2626; color:white; padding:6px 12px; border-radius:6px; font-size:12px">⏰ 15:30</span>
+        <span style="color:#475569; font-size:13px">→ 用完整日线数据重新跑所有战法 + 统计今日涨幅、涨停数</span>
+        <span style="background:#dc2626; color:white; font-size:11px; padding:2px 8px; border-radius:4px">收盘复盘</span>
+      </div>
+    </div>
+    <div style="margin-top:12px; padding:10px 14px; background:#fefce8; border-radius:8px; font-size:13px">
+      <strong>复盘页面新增</strong>：
+      <ul style="margin:4px 0 0 16px">
+        <li>📈 今日预选股的实际涨幅排名</li>
+        <li>✅ 各策略今日胜率（入选后上涨vs下跌的比例）</li>
+        <li>🏆 今日最佳策略（选出数量+上涨比例综合评分）</li>
+        <li>📉 炸板/坑人股复盘</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:16px; font-size:14px; color:#475569">
+以上调整我更新到设计文档里。你觉得这样OK吗？
+</p>

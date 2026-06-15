@@ -1,0 +1,177 @@
+<h2>整体页面布局方案</h2>
+<p class="subtitle">选股结果主页 — 按策略分组 + 股票卡片</p>
+
+<div class="section">
+  <h3>页面结构</h3>
+
+  <div style="border:2px solid #e2e8f0; border-radius:12px; overflow:hidden; font-family:system-ui,sans-serif; margin-top:12px">
+
+    <!-- 顶部导航 -->
+    <div style="background:#1a1a2e; color:white; padding:16px 24px; display:flex; align-items:center; justify-content:space-between">
+      <div style="display:flex; align-items:center; gap:12px">
+        <span style="font-size:20px; font-weight:700">📈 A股选股器</span>
+        <span style="font-size:13px; opacity:.7">每日盘前推送</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:20px; font-size:13px">
+        <span>📅 2026-06-13</span>
+        <span>⏰ 距开盘 3h 42m</span>
+      </div>
+    </div>
+
+    <!-- 日期导航 -->
+    <div style="background:#f8fafc; border-bottom:1px solid #e2e8f0; padding:10px 24px; display:flex; align-items:center; gap:12px; font-size:14px">
+      <span style="color:#666">历史回顾：</span>
+      <span style="padding:4px 12px; background:white; border:1px solid #d0d5dd; border-radius:6px; cursor:pointer">‹ 6/12</span>
+      <span style="padding:4px 12px; background:#1a1a2e; color:white; border-radius:6px">6/13 今日</span>
+      <span style="padding:4px 12px; background:white; border:1px solid #d0d5dd; border-radius:6px; cursor:pointer">6/14 ›</span>
+      <span style="margin-left:auto; color:#2563eb; cursor:pointer; font-size:13px">🔄 手动刷新数据</span>
+    </div>
+
+    <!-- 策略筛选栏 -->
+    <div style="padding:12px 24px; border-bottom:1px solid #e2e8f0; display:flex; flex-wrap:wrap; gap:8px">
+      <span style="padding:6px 16px; background:#1a1a2e; color:white; border-radius:20px; font-size:13px; font-weight:500">全部 (42)</span>
+      <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; cursor:pointer">均线多头 (15)</span>
+      <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; cursor:pointer">MACD金叉 (12)</span>
+      <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; cursor:pointer">放量突破 (8)</span>
+      <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; cursor:pointer">超跌反弹 (7)</span>
+    </div>
+
+    <!-- 股票卡片区域 -->
+    <div style="padding:20px 24px; display:grid; grid-template-columns:1fr 1fr; gap:12px; background:#f8fafc">
+
+      <!-- 卡片1 -->
+      <div style="background:white; border-radius:10px; padding:16px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:10px">
+        <div style="display:flex; justify-content:space-between; align-items:start">
+          <div>
+            <span style="font-size:16px; font-weight:700">赛力斯</span>
+            <span style="font-size:12px; color:#94a3b8; margin-left:8px">601127</span>
+          </div>
+          <div style="text-align:right">
+            <span style="font-size:16px; font-weight:700">87.65</span>
+            <span style="font-size:13px; color:#ef4444; margin-left:6px">+3.21%</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap">
+          <span style="background:#fef2f2; color:#dc2626; font-size:11px; padding:2px 8px; border-radius:4px">均线多头</span>
+          <span style="background:#fefce8; color:#ca8a04; font-size:11px; padding:2px 8px; border-radius:4px">MACD金叉</span>
+          <span style="background:#f0f9ff; color:#0284c7; font-size:11px; padding:2px 8px; border-radius:4px">放量突破</span>
+        </div>
+        <div style="font-size:12px; color:#64748b; border-top:1px solid #f1f5f9; padding-top:8px">
+          📌 MA5(85.2) > MA10(82.1) > MA20(78.5)，MACD日线金叉，昨日成交量较20日均量放大2.3倍
+        </div>
+      </div>
+
+      <!-- 卡片2 -->
+      <div style="background:white; border-radius:10px; padding:16px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:10px">
+        <div style="display:flex; justify-content:space-between; align-items:start">
+          <div>
+            <span style="font-size:16px; font-weight:700">宁德时代</span>
+            <span style="font-size:12px; color:#94a3b8; margin-left:8px">300750</span>
+          </div>
+          <div style="text-align:right">
+            <span style="font-size:16px; font-weight:700">225.30</span>
+            <span style="font-size:13px; color:#22c55e; margin-left:6px">-1.25%</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap">
+          <span style="background:#fef2f2; color:#dc2626; font-size:11px; padding:2px 8px; border-radius:4px">均线多头</span>
+          <span style="background:#f0f9ff; color:#0284c7; font-size:11px; padding:2px 8px; border-radius:4px">放量突破</span>
+        </div>
+        <div style="font-size:12px; color:#64748b; border-top:1px solid #f1f5f9; padding-top:8px">
+          📌 MA5(221.5) > MA10(218.2) > MA20(215.0)，股价突破前高222.5，成交量放大1.8倍
+        </div>
+      </div>
+
+      <!-- 卡片3 -->
+      <div style="background:white; border-radius:10px; padding:16px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:10px">
+        <div style="display:flex; justify-content:space-between; align-items:start">
+          <div>
+            <span style="font-size:16px; font-weight:700">东方财富</span>
+            <span style="font-size:12px; color:#94a3b8; margin-left:8px">300059</span>
+          </div>
+          <div style="text-align:right">
+            <span style="font-size:16px; font-weight:700">24.56</span>
+            <span style="font-size:13px; color:#ef4444; margin-left:6px">+5.68%</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap">
+          <span style="background:#fefce8; color:#ca8a04; font-size:11px; padding:2px 8px; border-radius:4px">MACD金叉</span>
+          <span style="background:#f0f9ff; color:#0284c7; font-size:11px; padding:2px 8px; border-radius:4px">放量突破</span>
+        </div>
+        <div style="font-size:12px; color:#64748b; border-top:1px solid #f1f5f9; padding-top:8px">
+          📌 MACD日线金叉，DIF突破DEA，成交量创30日新高
+        </div>
+      </div>
+
+      <!-- 卡片4 -->
+      <div style="background:white; border-radius:10px; padding:16px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:10px">
+        <div style="display:flex; justify-content:space-between; align-items:start">
+          <div>
+            <span style="font-size:16px; font-weight:700">科大讯飞</span>
+            <span style="font-size:12px; color:#94a3b8; margin-left:8px">002230</span>
+          </div>
+          <div style="text-align:right">
+            <span style="font-size:16px; font-weight:700">45.20</span>
+            <span style="font-size:13px; color:#22c55e; margin-left:6px">-0.88%</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap">
+          <span style="background:#eef2ff; color:#4f46e5; font-size:11px; padding:2px 8px; border-radius:4px">超跌反弹</span>
+        </div>
+        <div style="font-size:12px; color:#64748b; border-top:1px solid #f1f5f9; padding-top:8px">
+          📌 RSI(14)=26.3 进入超卖区，近5日累计跌幅达8.5%，存在技术性反弹机会
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部 -->
+    <div style="padding:12px 24px; border-top:1px solid #e2e8f0; text-align:center; font-size:12px; color:#94a3b8">
+      数据来源：东方财富 · 每日开盘前自动更新 · 不构成投资建议
+    </div>
+  </div>
+</div>
+
+<hr style="margin:24px 0">
+
+<div class="section">
+  <h3>选股策略（短线）</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="ma" onclick="toggleSelect(this)">
+      <div class="letter">1</div>
+      <div class="content">
+        <h3>📐 均线多头排列</h3>
+        <p>MA5 > MA10 > MA20 > MA60，价格站稳短期均线上方，处于上升通道</p>
+      </div>
+    </div>
+    <div class="option" data-choice="macd" onclick="toggleSelect(this)">
+      <div class="letter">2</div>
+      <div class="content">
+        <h3>🟢 MACD金叉</h3>
+        <p>日线DIF上穿DEA，且位于零轴附近或上方，动能由弱转强</p>
+      </div>
+    </div>
+    <div class="option" data-choice="volume" onclick="toggleSelect(this)">
+      <div class="letter">3</div>
+      <div class="content">
+        <h3>📊 放量突破</h3>
+        <p>成交量 > 20日均量 × 1.5，且涨幅 > 3%，资金明显介入</p>
+      </div>
+    </div>
+    <div class="option" data-choice="rsi" onclick="toggleSelect(this)">
+      <div class="letter">4</div>
+      <div class="content">
+        <h3>🔄 超跌反弹</h3>
+        <p>RSI(14) < 35 且近5日跌幅 > 5%，超卖后有反弹预期</p>
+      </div>
+    </div>
+    <div class="option" data-choice="limitup" onclick="toggleSelect(this)">
+      <div class="letter">5</div>
+      <div class="content">
+        <h3>⚡ 涨停基因</h3>
+        <p>近10个交易日内出现过涨停，后续有望延续强势</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:8px; font-size:13px; color:#64748b">点击选择你认为合适的策略，选好后在终端告诉我</p>
+</div>

@@ -1,0 +1,77 @@
+<h2>数据模型 & API 设计</h2>
+<p class="subtitle">数据库表结构和接口"</p>
+
+<div class="section">
+  <h3>数据库表结构（SQLite）</h3>
+
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px; font-family:monospace; font-size:13px; line-height:1.7">
+
+    <div style="background:white; border-radius:8px; padding:14px; margin-bottom:12px; border:1px solid #e2e8f0">
+      <div style="color:#2563eb; font-weight:700">screening_results（选股结果）</div>
+      <div style="color:#475569">
+        id | date | stock_code | stock_name | strategy_name | price | change_pct | volume_ratio<br>
+        | reason | indicators_json | sector | market_cap | created_at
+      </div>
+      <div style="font-size:12px; color:#64748b; margin-top:4px">
+        📌 每天每只股票每条策略一条记录，reason字段存入选原因，indicators_json存关键指标
+      </div>
+    </div>
+
+    <div style="background:white; border-radius:8px; padding:14px; margin-bottom:12px; border:1px solid #e2e8f0">
+      <div style="color:#059669; font-weight:700">daily_summary（每日统计）</div>
+      <div style="color:#475569">
+        id | date | total_stocks | strategies_count | run_at | status
+      </div>
+    </div>
+
+    <div style="background:white; border-radius:8px; padding:14px; border:1px solid #e2e8f0">
+      <div style="color:#7c3aed; font-weight:700">stock_cache（日线缓存）</div>
+      <div style="color:#475569">
+        id | stock_code | trade_date | open | close | high | low | volume | amount<br>
+        | ma5 | ma10 | ma20 | ma60 | macd | rsi | created_at
+      </div>
+      <div style="font-size:12px; color:#64748b; margin-top:4px">
+        📌 缓存计算好的指标，避免重复请求akshare
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3>REST API 接口</h3>
+
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px">
+
+    <div style="background:white; border-radius:6px; padding:10px 14px; margin-bottom:8px; border:1px solid #e2e8f0">
+      <div><span style="color:#059669; font-weight:700">GET</span> <span style="font-family:monospace">/api/results?date=2026-06-13&strategy=底部爆量</span></div>
+      <div style="font-size:13px; color:#475569">获取指定日期的选股结果，可按策略筛选</div>
+    </div>
+
+    <div style="background:white; border-radius:6px; padding:10px 14px; margin-bottom:8px; border:1px solid #e2e8f0">
+      <div><span style="color:#059669; font-weight:700">GET</span> <span style="font-family:monospace">/api/strategies</span></div>
+      <div style="font-size:13px; color:#475569">获取所有策略列表及说明</div>
+    </div>
+
+    <div style="background:white; border-radius:6px; padding:10px 14px; margin-bottom:8px; border:1px solid #e2e8f0">
+      <div><span style="color:#059669; font-weight:700">GET</span> <span style="font-family:monospace">/api/summary?date=2026-06-13</span></div>
+      <div style="font-size:13px; color:#475569">获取每日统计概览（总数、各策略数量）</div>
+    </div>
+
+    <div style="background:white; border-radius:6px; padding:10px 14px; margin-bottom:8px; border:1px solid #e2e8f0">
+      <div><span style="color:#f59e0b; font-weight:700">POST</span> <span style="font-family:monospace">/api/run-screening</span></div>
+      <div style="font-size:13px; color:#475569">手动触发选股（管理员用）</div>
+    </div>
+
+    <div style="background:white; border-radius:6px; padding:10px 14px; border:1px solid #e2e8f0">
+      <div><span style="color:#2563eb; font-weight:700">GET</span> <span style="font-family:monospace">/api/dates</span></div>
+      <div style="font-size:13px; color:#475569">获取有选股记录的所有日期（用于日期导航）</div>
+    </div>
+
+  </div>
+</div>
+
+<p style="margin-top:16px; font-size:14px; color:#475569">
+数据库用 SQLite 足够了，一天几千条数据完全无压力。前端通过 5 个 API 就能搞定全部功能。<br>
+这个设计合适吗？
+</p>

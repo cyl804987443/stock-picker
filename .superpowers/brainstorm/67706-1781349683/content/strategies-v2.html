@@ -1,0 +1,113 @@
+<h2>选股策略（实战战法版）</h2>
+<p class="subtitle">你提到的模式，每个都有明确的量化规则，不是模糊的感觉</p>
+
+<div class="options" data-multiselect>
+  <div class="option" data-choice="volume-explode" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h3>📈 底部爆量</h3>
+      <p><strong>逻辑</strong>：个股在底部横盘或阴跌后，某日突然放出巨量，说明有大资金介入，是趋势反转的早期信号</p>
+      <div style="margin-top:8px; font-size:13px">
+        <strong>量化规则</strong>：
+        <ul style="margin:4px 0 0 16px; padding:0">
+          <li>当前股价处于近60日价格区间的下30%分位（底部区域）</li>
+          <li>当日成交量 > 20日均量 × 2.5</li>
+          <li>当日涨幅 > 2% 且收阳线</li>
+          <li>当日成交量是近10日最高</li>
+          <li>✅ 附加：若同板块多只个股同时爆量则加分</li>
+        </ul>
+      </div>
+      <div style="margin-top:6px; padding:6px 10px; background:#f0f9ff; border-radius:6px; font-size:13px">
+        选股优先级：爆量系数(实际量/均量)越高越优先，底部位置越低越优先
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="volume-suffocate" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content">
+      <h3>🔇 量窒息（地量）</h3>
+      <p><strong>逻辑</strong>：成交量萎缩到极致，说明该卖的都卖完了，多空力量趋于平衡，随时可能选择方向（通常是向上反弹）</p>
+      <div style="margin-top:8px; font-size:13px">
+        <strong>量化规则</strong>：
+        <ul style="margin:4px 0 0 16px; padding:0">
+          <li>当日成交量 < 20日均量 × 0.4</li>
+          <li>成交量创近20日新低</li>
+          <li>股价处于近30日低位（跌幅 > 10%）</li>
+          <li>当日价格振幅 < 3%（窄幅震荡）</li>
+          <li>✅ 附加：量窒息出现后需配合后续放量确认，选入观察池</li>
+        </ul>
+      </div>
+      <div style="margin-top:6px; padding:6px 10px; background:#fefce8; border-radius:6px; font-size:13px">
+        选股优先级：量缩程度越大越好，位置越低越好，振幅越小越好
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="three-one" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h3>📐 三一模式（三缩一放）</h3>
+      <p><strong>逻辑</strong>：连续3天缩量回调，成交量逐日递减，第4天放量阳线反包，是经典的洗盘结束+启动信号</p>
+      <div style="margin-top:8px; font-size:13px">
+        <strong>量化规则</strong>：
+        <ul style="margin:4px 0 0 16px; padding:0">
+          <li>前3天连续收阴线（或至少为跌）</li>
+          <li>前3天成交量逐日递减</li>
+          <li>第4天收阳线，收盘价 > 前3天最高价（反包）</li>
+          <li>第4天成交量 > 前3日均量 × 1.5</li>
+        </ul>
+      </div>
+      <div style="margin-top:6px; padding:6px 10px; background:#f0fdf4; border-radius:6px; font-size:13px">
+        选股优先级：反包幅度越大越好，放量越明显越好
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="first-to-second" onclick="toggleSelect(this)">
+    <div class="letter">4</div>
+    <div class="content">
+      <h3>⚡ 一进二（首板抓二板）</h3>
+      <p><strong>逻辑</strong>：个股昨日首次涨停（首板），今日有望走出连板行情。核心看首板的质量和封板时间</p>
+      <div style="margin-top:8px; font-size:13px">
+        <strong>量化规则</strong>：
+        <ul style="margin:4px 0 0 16px; padding:0">
+          <li>昨日首次涨停（非一字板，有一定的换手）</li>
+          <li>涨停时间在14:00前（早盘板质量更高）</li>
+          <li>昨日成交量温和放大（非巨量）</li>
+          <li>近10个交易日内没有涨停过（首板属性）</li>
+          <li>✅ 附加：同板块多只个股同时涨停，说明有板块效应</li>
+        </ul>
+      </div>
+      <div style="margin-top:6px; padding:6px 10px; background:#fef2f2; border-radius:6px; font-size:13px">
+        选股优先级：封板越早越好，板块效应越强越好，流通市值适中（30-100亿）更佳
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="n-break" onclick="toggleSelect(this)">
+    <div class="letter">5</div>
+    <div class="content">
+      <h3>〰️ N字突破（可选）</h3>
+      <p><strong>逻辑</strong>：股价走N字形——先涨一波（第一笔），再回调（第二笔），回调不破前低后再次突破前高（第三笔），是趋势延续的信号</p>
+      <div style="margin-top:6px; font-size:13px">
+        <strong>量化规则</strong>：先涨 > 10% → 回调幅度 < 涨幅的60% → 再次放量突破前高
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="dragon-back" onclick="toggleSelect(this)">
+    <div class="letter">6</div>
+    <div class="content">
+      <h3>🐉 龙回头（可选）</h3>
+      <p><strong>逻辑</strong>：强势股经历一波主升浪后大幅回调至关键支撑位（如20日均线），企稳后有望走第二波</p>
+      <div style="margin-top:6px; font-size:13px">
+        <strong>量化规则</strong>：前期涨幅 > 30% → 回调至20日/60日均线附近 → 缩量企稳
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:16px; font-size:14px; color:#475569">
+看一下这4个核心策略（底部爆量、量窒息、三一模式、一进二）的定义你觉得靠谱吗？还有"N字突破"和"龙回头"要不要加进来？
+</p>

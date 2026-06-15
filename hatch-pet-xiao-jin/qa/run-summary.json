@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "run_dir": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin",
+  "spritesheet": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/final/spritesheet.webp",
+  "validation": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/final/validation.json",
+  "contact_sheet": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/qa/contact-sheet.png",
+  "review": "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/qa/review.json",
+  "package": "/Users/jackiechan/.codex/pets/xiao-jin"
+}

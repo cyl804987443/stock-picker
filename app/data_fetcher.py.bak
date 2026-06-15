@@ -1,0 +1,388 @@
+"""Real Shanghai/Shenzhen main-board market data via AkShare/Eastmoney."""
+
+import asyncio
+import datetime
+import time
+from collections.abc import Awaitable, Callable
+
+import akshare as ak
+import pandas as pd
+from sqlalchemy import delete, func, select
+from sqlalchemy.dialects.sqlite import insert as sqlite_insert
+
+from app.config import settings
+from app.database import async_session
+from app.models import StockCache, StockUniverse
+from app.utils import safe_float
+
+MAIN_BOARD_PREFIXES = ("000", "001", "002", "003", "600", "601", "603", "605")
+ProgressCallback = Callable[[int, int, int, int], Awaitable[None]]
+
+
+class MarketDataError(RuntimeError):
+    pass
+
+
+def filter_main_board_stocks(frame: pd.DataFrame) -> list[dict]:
+    """Return active, non-risk Shanghai/Shenzhen main-board A shares."""
+    required = {"代码", "名称", "最新价"}
+    if frame is None or frame.empty or not required.issubset(frame.columns):
+        raise MarketDataError("股票列表数据为空或字段不完整")
+
+    stocks: list[dict] = []
+    for _, row in frame.iterrows():
+        raw_code = str(row["代码"]).strip().lower()
+        if raw_code.startswith(("sh", "sz", "bj")):
+            raw_code = raw_code[2:]
+        code = raw_code.zfill(6)
+        name = str(row["名称"]).strip()
+        price = pd.to_numeric(row["最新价"], errors="coerce")
+        upper_name = name.upper()
+        if not code.startswith(MAIN_BOARD_PREFIXES):
+            continue
+        if "ST" in upper_name or "退市" in name:
+            continue
+        if pd.isna(price) or float(price) <= 0:
+            continue
+        stocks.append({
+            "code": code,
+            "name": name,
+            "market": "sh" if code.startswith("6") else "sz",
+            "latest_price": float(price),
+        })
+    return stocks
+
+
+def fetch_stock_universe() -> list[dict]:
+    errors = []
+    for attempt in range(settings.max_retries):
+        try:
+            return filter_main_board_stocks(ak.stock_zh_a_spot_em())
+        except Exception as exc:
+            errors.append(f"东方财富: {exc}")
+            if attempt + 1 < settings.max_retries:
+                time.sleep(1.5 * (attempt + 1))
+    try:
+        return filter_main_board_stocks(ak.stock_zh_a_spot())
+    except Exception as exc:
+        errors.append(f"新浪: {exc}")
+    raise MarketDataError("获取全市场股票列表失败；" + "；".join(errors))
+
+
+
+# Stock code → sector/concept mapping (top 3 concepts)
+STOCK_SECTORS = {
+    "000001": "银行,金融,蓝筹", "000002": "房地产,蓝筹,深港通", "000333": "家电,智能家居,工业4.0",
+    "000651": "家电,智能家居,工业4.0", "000725": "OLED,半导体,面板", "000858": "白酒,食品饮料,大消费",
+    "002142": "银行,金融,蓝筹", "002230": "AI,人工智能,语音识别", "002415": "安防,AI,物联网",
+    "002460": "锂电池,新能源,有色金属", "002466": "锂电池,新能源,有色金属", "002594": "新能源汽车,锂电池,半导体",
+    "300015": "医疗,眼科,大健康", "300033": "互联网金融,AI,大数据", "300059": "互联网金融,券商,AI",
+    "300124": "工业自动化,机器人,新能源", "300274": "光伏,新能源,储能", "300750": "锂电池,新能源,储能",
+    "600030": "券商,金融,蓝筹", "600036": "银行,金融,蓝筹", "600050": "5G,通信,国企改革",
+    "600276": "医药,创新药,大健康", "600309": "化工,新材料,MDI", "600519": "白酒,食品饮料,大消费",
+    "600585": "水泥,建材,基建", "600809": "白酒,食品饮料,大消费", "600887": "乳业,食品饮料,大消费",
+    "600900": "电力,水电,碳中和", "601012": "光伏,新能源,单晶硅", "601318": "保险,金融,蓝筹",
+    "601398": "银行,金融,蓝筹", "601857": "石油,能源,央企改革", "601888": "免税,旅游,大消费",
+    "688111": "办公软件,AI,信创", "688981": "芯片,半导体,国产替代",
+}
+
+def get_stock_sector(code: str) -> str:
+    """Get sector/concept tags for a stock code."""
+    return STOCK_SECTORS.get(code, "")
+
+
+
+
+# === FALLBACK FUNCTIONS (added) ===
+
+def _get_fallback_stocks() -> list:
+    """Fallback stock list when external APIs are unavailable."""
+    return [
+        ("000001","平安银行"),("000002","万科A"),("000333","美的集团"),
+        ("000651","格力电器"),("000725","京东方A"),("000858","五粮液"),
+        ("002142","宁波银行"),("002230","科大讯飞"),("002415","海康威视"),
+        ("002460","赣锋锂业"),("002466","天齐锂业"),("002594","比亚迪"),
+        ("300015","爱尔眼科"),("300033","同花顺"),("300059","东方财富"),
+        ("300124","汇川技术"),("300274","阳光电源"),("300750","宁德时代"),
+        ("600030","中信证券"),("600036","招商银行"),("600050","中国联通"),
+        ("600276","恒瑞医药"),("600309","万华化学"),("600519","贵州茅台"),
+        ("600585","海螺水泥"),("600809","山西汾酒"),("600887","伊利股份"),
+        ("600900","长江电力"),("601012","隆基绿能"),("601318","中国平安"),
+        ("601398","工商银行"),("601857","中国石油"),("601888","中国中免"),
+        ("688111","金山办公"),("688981","中芯国际"),
+    ]
+
+def _generate_synthetic_kline(code: str, days: int = 60):
+    """Generate synthetic daily K-line data for demo/testing."""
+    import numpy as np, datetime, pandas as pd
+    np.random.seed(int(code) % 10000)
+    base_price = np.random.uniform(5, 200)
+    vol = base_price * 0.025
+    records = []
+    base_date = datetime.date.today()
+    for i in range(days):
+        td = base_date - datetime.timedelta(days=days - i)
+        if td.weekday() >= 5: continue
+        open_p = base_price + np.random.normal(0, vol)
+        close_p = open_p + np.random.normal(0, vol * 0.5)
+        high_p = max(open_p, close_p) + abs(np.random.normal(0, vol * 0.3))
+        low_p = min(open_p, close_p) - abs(np.random.normal(0, vol * 0.3))
+        v = np.random.uniform(100000, 5000000)
+        records.append(dict(trade_date=td.strftime("%Y-%m-%d"), open=round(open_p,2),
+            close=round(close_p,2), high=round(high_p,2), low=round(low_p,2),
+            volume=v, amount=round(close_p*v/10000,2)))
+    return pd.DataFrame(records)
+
+def fetch_daily_kline(code: str, start_date: str, end_date: str) -> pd.DataFrame:
+    """Fetch real adjusted history. Failure is explicit; no synthetic fallback."""
+    market_code = ("sh" if code.startswith("6") else "sz") + code
+    errors = []
+
+    try:
+        frame = ak.stock_zh_a_hist_tx(
+            symbol=market_code,
+            start_date=start_date,
+            end_date=end_date,
+            adjust="qfq",
+            timeout=20,
+        )
+        if frame is not None and not frame.empty:
+            result = frame.rename(columns={
+                "date": "trade_date", "amount": "volume",
+            })[["trade_date", "open", "close", "high", "low", "volume"]].copy()
+            result["amount"] = (
+                pd.to_numeric(result["close"], errors="coerce")
+                * pd.to_numeric(result["volume"], errors="coerce") * 100
+            )
+            return _normalize_history(code, result)
+        errors.append("腾讯: 无数据")
+    except Exception as exc:
+        errors.append(f"腾讯: {exc}")
+
+    try:
+        frame = ak.stock_zh_a_hist(
+            symbol=code, period="daily", start_date=start_date,
+            end_date=end_date, adjust="qfq", timeout=20,
+        )
+        if frame is not None and not frame.empty:
+            result = frame.rename(columns={
+                "日期": "trade_date", "开盘": "open", "收盘": "close",
+                "最高": "high", "最低": "low", "成交量": "volume",
+                "成交额": "amount",
+            })[
+                ["trade_date", "open", "close", "high", "low", "volume", "amount"]
+            ].copy()
+            return _normalize_history(code, result)
+        errors.append("东方财富: 无数据")
+    except Exception as exc:
+        errors.append(f"东方财富: {exc}")
+
+    try:
+        frame = ak.stock_zh_a_daily(
+            symbol=market_code,
+            start_date=start_date,
+            end_date=end_date,
+            adjust="qfq",
+        )
+        if frame is not None and not frame.empty:
+            result = frame.rename(columns={"date": "trade_date"})[
+                ["trade_date", "open", "close", "high", "low", "volume", "amount"]
+            ].copy()
+            return _normalize_history(code, result)
+        errors.append("新浪: 无数据")
+    except Exception as exc:
+        errors.append(f"新浪: {exc}")
+
+    raise MarketDataError(f"{code} 日线获取失败；" + "；".join(errors))
+
+
+def _normalize_history(code: str, result: pd.DataFrame) -> pd.DataFrame:
+    result["trade_date"] = pd.to_datetime(result["trade_date"]).dt.strftime("%Y-%m-%d")
+    for column in ("open", "close", "high", "low", "volume", "amount"):
+        result[column] = pd.to_numeric(result[column], errors="coerce")
+    result = result.dropna(subset=["open", "close", "high", "low", "volume"])
+    if result.empty:
+        raise MarketDataError(f"{code} 日线数据无有效记录")
+    return result.sort_values("trade_date").reset_index(drop=True)
+
+
+def latest_expected_trade_date(today: datetime.date | None = None) -> datetime.date:
+    """Return the latest expected session date, with a network-free fallback."""
+    current = today or datetime.date.today()
+    try:
+        calendar = ak.tool_trade_date_hist_sina()
+        dates = pd.to_datetime(calendar["trade_date"]).dt.date
+        eligible = dates[dates <= current]
+        if not eligible.empty:
+            return max(eligible)
+    except Exception:
+        pass
+    while current.weekday() >= 5:
+        current -= datetime.timedelta(days=1)
+    return current
+
+
+async def refresh_stock_universe() -> list[dict]:
+    stocks = await asyncio.to_thread(fetch_stock_universe)
+    async with async_session() as session:
+        async with session.begin():
+            await session.execute(delete(StockUniverse))
+            session.add_all([
+                StockUniverse(
+                    stock_code=item["code"],
+                    stock_name=item["name"],
+                    market=item["market"],
+                    latest_price=item["latest_price"],
+                    is_active=True,
+                )
+                for item in stocks
+            ])
+    return stocks
+
+
+async def get_stock_universe() -> list[dict]:
+    async with async_session() as session:
+        rows = (
+            await session.execute(
+                select(StockUniverse).where(StockUniverse.is_active.is_(True))
+                .order_by(StockUniverse.stock_code)
+            )
+        ).scalars().all()
+    return [
+        {"code": row.stock_code, "name": row.stock_name, "market": row.market}
+        for row in rows
+    ]
+
+
+async def _latest_cache_dates() -> dict[str, str]:
+    async with async_session() as session:
+        rows = (
+            await session.execute(
+                select(StockCache.stock_code, func.max(StockCache.trade_date))
+                .group_by(StockCache.stock_code)
+            )
+        ).all()
+    return {code: trade_date for code, trade_date in rows}
+
+
+async def _store_history(code: str, frame: pd.DataFrame) -> None:
+    records = []
+    for row in frame.to_dict("records"):
+        records.append({
+            "stock_code": code,
+            "trade_date": row["trade_date"],
+            "open": safe_float(row["open"]),
+            "close": safe_float(row["close"]),
+            "high": safe_float(row["high"]),
+            "low": safe_float(row["low"]),
+            "volume": safe_float(row["volume"]),
+            "amount": safe_float(row["amount"]),
+        })
+    async with async_session() as session:
+        statement = sqlite_insert(StockCache).values(records)
+        statement = statement.on_conflict_do_update(
+            index_elements=["stock_code", "trade_date"],
+            set_={
+                "open": statement.excluded.open,
+                "close": statement.excluded.close,
+                "high": statement.excluded.high,
+                "low": statement.excluded.low,
+                "volume": statement.excluded.volume,
+                "amount": statement.excluded.amount,
+            },
+        )
+        await session.execute(statement)
+        await session.commit()
+
+
+async def sync_market_data(
+    stocks: list[dict],
+    progress_callback: ProgressCallback | None = None,
+) -> dict:
+    if not stocks:
+        raise MarketDataError("股票池为空")
+    latest_dates = await _latest_cache_dates()
+    target_date = await asyncio.to_thread(latest_expected_trade_date)
+    initial_start = target_date - datetime.timedelta(days=190)
+    semaphore = asyncio.Semaphore(settings.market_data_concurrency)
+    total = len(stocks)
+    processed = success = failed = 0
+    errors: list[str] = []
+
+    async def fetch_one(item: dict):
+        code = item["code"]
+        latest = latest_dates.get(code)
+        start = (
+            datetime.date.fromisoformat(latest) + datetime.timedelta(days=1)
+            if latest else initial_start
+        )
+        if start > target_date:
+            return code, None, None
+        async with semaphore:
+            try:
+                frame = await asyncio.to_thread(
+                    fetch_daily_kline,
+                    code,
+                    start.strftime("%Y%m%d"),
+                    target_date.strftime("%Y%m%d"),
+                )
+                if latest is None:
+                    frame = frame.tail(settings.initial_history_days)
+                return code, frame, None
+            except MarketDataError as exc:
+                return code, None, str(exc)
+
+    tasks = [asyncio.create_task(fetch_one(item)) for item in stocks]
+    for future in asyncio.as_completed(tasks):
+        code, frame, error = await future
+        processed += 1
+        if error:
+            failed += 1
+            errors.append(error)
+        else:
+            if frame is not None and not frame.empty:
+                await _store_history(code, frame)
+            success += 1
+        if progress_callback:
+            await progress_callback(processed, total, success, failed)
+
+    ratio = success / total
+    if ratio < settings.minimum_sync_ratio:
+        raise MarketDataError(
+            f"真实行情同步覆盖率仅 {ratio:.1%}，低于要求的 "
+            f"{settings.minimum_sync_ratio:.0%}；未执行选股。"
+        )
+    return {
+        "total": total, "processed": processed, "success": success,
+        "failed": failed, "errors": errors[:20],
+    }
+
+
+async def get_cached_data(
+    codes: list[str] | None = None,
+    start_date: str | None = None,
+    end_date: str | None = None,
+) -> dict[str, pd.DataFrame]:
+    query = select(StockCache)
+    if codes:
+        query = query.where(StockCache.stock_code.in_(codes))
+    if start_date:
+        query = query.where(StockCache.trade_date >= start_date)
+    if end_date:
+        query = query.where(StockCache.trade_date <= end_date)
+    query = query.order_by(StockCache.stock_code, StockCache.trade_date)
+    async with async_session() as session:
+        rows = (await session.execute(query)).scalars().all()
+
+    grouped: dict[str, list[dict]] = {}
+    for row in rows:
+        grouped.setdefault(row.stock_code, []).append({
+            "trade_date": row.trade_date, "open": row.open or 0,
+            "close": row.close or 0, "high": row.high or 0,
+            "low": row.low or 0, "volume": row.volume or 0,
+            "amount": row.amount or 0,
+        })
+    return {
+        code: pd.DataFrame(records).sort_values("trade_date").reset_index(drop=True)
+        for code, records in grouped.items()
+    }

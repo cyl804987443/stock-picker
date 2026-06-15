@@ -1,0 +1,98 @@
+<h2>前端页面设计</h2>
+<p class="subtitle">单页应用，四个核心视图</p>
+
+<div class="section">
+  <h3>视图一：选股结果首页（默认视图）</h3>
+  <div style="border:2px solid #e2e8f0; border-radius:12px; overflow:hidden; font-size:13px">
+
+    <div style="background:#1a1a2e; color:white; padding:12px 20px; display:flex; align-items:center; justify-content:space-between">
+      <div><strong>📈 A股选股器</strong> <span style="opacity:.6; margin-left:8px">每日盘前推送</span></div>
+      <div style="display:flex; gap:16px; font-size:12px">
+        <span>📅 2026-06-13</span>
+        <span>⏰ 距开盘 3h 42m</span>
+        <span style="color:#fbbf24; cursor:pointer">🔄 刷新</span>
+      </div>
+    </div>
+
+    <div style="padding:10px 20px; background:#f8fafc; border-bottom:1px solid #e2e8f0; display:flex; align-items:center; gap:8px">
+      <span style="color:#64748b">📅 日期：</span>
+      <span style="padding:3px 10px; background:#1a1a2e; color:white; border-radius:4px; font-size:12px">6/13</span>
+      <span style="padding:3px 10px; background:white; border:1px solid #d0d5dd; border-radius:4px; font-size:12px; cursor:pointer">6/12</span>
+      <span style="padding:3px 10px; background:white; border:1px solid #d0d5dd; border-radius:4px; font-size:12px; cursor:pointer">6/11</span>
+      <span style="margin-left:auto; font-size:12px; color:#2563eb; cursor:pointer">查看更多 ></span>
+    </div>
+
+    <div style="padding:10px 20px; border-bottom:1px solid #e2e8f0; display:flex; flex-wrap:wrap; gap:6px; background:white">
+      <span style="padding:4px 14px; background:#1a1a2e; color:white; border-radius:16px; font-size:12px">全部 (97)</span>
+      <span style="padding:4px 14px; background:#f1f5f9; border-radius:16px; font-size:12px; cursor:pointer">底部爆量 (12)</span>
+      <span style="padding:4px 14px; background:#f1f5f9; border-radius:16px; font-size:12px; cursor:pointer">三一模式 (8)</span>
+      <span style="padding:4px 14px; background:#f1f5f9; border-radius:16px; font-size:12px; cursor:pointer">一进二 (6)</span>
+      <span style="padding:4px 14px; background:#f1f5f9; border-radius:16px; font-size:12px; cursor:pointer">反包 (5)</span>
+      <span style="padding:4px 14px; background:#f1f5f9; border-radius:16px; font-size:12px; cursor:pointer">仙人指路 (4)</span>
+      <span style="padding:4px 14px; background:#f1f5f9; border-radius:16px; font-size:12px; cursor:pointer">↓ 更多</span>
+    </div>
+
+    <div style="padding:14px 20px; background:#f8fafc">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px">
+        <span style="font-weight:600; font-size:14px">📊 选股结果 <span style="font-weight:400; color:#64748b; font-size:12px">共97只</span></span>
+        <span style="font-size:12px; color:#64748b">按指标排序 ↓</span>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px">
+        <!-- 卡片 -->
+        <div style="background:white; border-radius:8px; padding:12px; border:1px solid #e2e8f0">
+          <div style="display:flex; justify-content:space-between">
+            <div><strong>赛力斯</strong> <span style="color:#94a3b8">601127</span></div>
+            <div><strong>87.65</strong> <span style="color:#ef4444">+3.21%</span></div>
+          </div>
+          <div style="display:flex; gap:4px; margin:6px 0; flex-wrap:wrap">
+            <span style="background:#fef2f2; color:#dc2626; font-size:10px; padding:1px 6px; border-radius:3px">底部爆量</span>
+            <span style="background:#f0f9ff; color:#0284c7; font-size:10px; padding:1px 6px; border-radius:3px">仙人指路</span>
+          </div>
+          <div style="font-size:11px; color:#64748b">📌 底部20日地量后放量3.2倍，收长上影线试盘，主力介入明显</div>
+        </div>
+        <div style="background:white; border-radius:8px; padding:12px; border:1px solid #e2e8f0">
+          <div style="display:flex; justify-content:space-between">
+            <div><strong>东方财富</strong> <span style="color:#94a3b8">300059</span></div>
+            <div><strong>24.56</strong> <span style="color:#ef4444">+5.68%</span></div>
+          </div>
+          <div style="display:flex; gap:4px; margin:6px 0; flex-wrap:wrap">
+            <span style="background:#fef2f2; color:#dc2626; font-size:10px; padding:1px 6px; border-radius:3px">底部爆量</span>
+            <span style="background:#fefce8; color:#ca8a04; font-size:10px; padding:1px 6px; border-radius:3px">放量突破</span>
+          </div>
+          <div style="font-size:11px; color:#64748b">📌 成交量创60日新高，突破MA60压制，资金大幅流入</div>
+        </div>
+      </div>
+      <div style="margin-top:8px; text-align:center; font-size:12px; color:#2563eb; cursor:pointer">加载更多...</div>
+    </div>
+
+    <div style="padding:8px 20px; background:white; border-top:1px solid #e2e8f0; text-align:center; font-size:11px; color:#94a3b8">
+      数据来源：东方财富 · 每日自动更新 · 不构成投资建议
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>其他视图概览</h3>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+    <div style="background:#f1f5f9; border-radius:8px; padding:14px">
+      <strong style="font-size:14px">📊 策略详情视图</strong>
+      <p style="font-size:12px; color:#475569; margin-top:4px">点击策略标签进入，展示该策略当日选出的所有股票，附带个股K线走势、关键指标数值</p>
+    </div>
+    <div style="background:#f1f5f9; border-radius:8px; padding:14px">
+      <strong style="font-size:14px">📅 历史回顾视图</strong>
+      <p style="font-size:12px; color:#475569; margin-top:4px">日历式选择日期，查看历史选股结果，追踪已选股票的后续走势表现</p>
+    </div>
+    <div style="background:#f1f5f9; border-radius:8px; padding:14px">
+      <strong style="font-size:14px">📈 个股详情视图</strong>
+      <p style="font-size:12px; color:#475569; margin-top:4px">点击个股进入，展示该股近期走势、入选历史、各策略触发情况</p>
+    </div>
+    <div style="background:#f1f5f9; border-radius:8px; padding:14px">
+      <strong style="font-size:14px">📋 运行状态视图</strong>
+      <p style="font-size:12px; color:#475569; margin-top:4px">显示今日选股运行状态（是否已完成、各策略结果数量、运行耗时）</p>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:16px; font-size:14px; color:#475569">
+首页核心是选股结果卡片流。你觉得这个布局方向合适吗？有没有什么交互上的想法？
+</p>

@@ -1,0 +1,108 @@
+<h2>选股策略（实战战法版·修正）</h2>
+<p class="subtitle">每个战法都明确了量化逻辑和适用时段，同时也结合搜索结果补充了几个经典模式</p>
+
+<div style="margin-bottom:16px; padding:10px 14px; background:#fefce8; border-radius:8px; border:1px solid #fde68a; font-size:14px">
+<strong>⏰ 运行时段设计：</strong><br>
+早盘 7:00 预选（基于昨日数据）：底部爆量、量窒息、一进二 → 9:25 竞价结束后追加：三一模式
+</div>
+
+<div class="options" data-multiselect>
+  <div class="option" data-choice="three-one" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h3>🥇 三一模式（集合竞价排名）⭐ 修正</h3>
+      <p><strong>概念</strong>："三一" = 第一 + 专一。集合竞价期间（9:15-9:25），个股的成交额、换手率、涨幅三项指标排在全市场或同板块题材的第一名</p>
+      <div style="margin-top:8px; font-size:13px">
+        <strong>量化规则</strong>：
+        <ul style="margin:4px 0 0 16px; padding:0">
+          <li>模块一【竞价排名】：9:25竞价结束后，统计全市场/板块内，成交额前X%、换手率前X%、涨幅前X%的个股</li>
+          <li>模块二【三一确认】：同时三项指标均进入前列（排名在全市场前5%或板块前3）</li>
+          <li>模块三【择股优化】：叠加首板属性、板块热度、近期换手率趋势进行二次过滤</li>
+        </ul>
+      </div>
+      <div style="margin-top:6px; padding:6px 10px; background:#f0f9ff; border-radius:6px; font-size:13px">
+        ⚙️ 需跑在 9:25 竞价结束后 | 数据来源：集合竞价成交明细
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="volume-explode" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content">
+      <h3>📈 底部爆量</h3>
+      <p><strong>逻辑</strong>：个股在底部长期横盘或阴跌后，某天突然放出巨量阳线。真正的底部散户已经麻木，不可能有大量成交，异常放量=主力/大资金在建仓</p>
+      <div style="margin-top:8px; font-size:13px">
+        <strong>量化规则</strong>：
+        <ul style="margin:4px 0 0 16px; padding:0">
+          <li>股价处于近60日区间的下30%分位（底部区域确认）</li>
+          <li>当日成交量 > 20日均量 × 2.5（爆量倍数）</li>
+          <li>当日涨幅 > 2% 且收阳线</li>
+          <li>当日成交量创近20日新高</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="volume-suffocate" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h3>🔇 量窒息（地量见地价）</h3>
+      <p><strong>逻辑</strong>：成交量萎缩到极致（地量），说明该卖的都卖完了，多空平衡。谚语"地量见地价"，往往是反弹前夜</p>
+      <div style="margin-top:8px; font-size:13px">
+        <strong>量化规则</strong>：
+        <ul style="margin:4px 0 0 16px; padding:0">
+          <li>当日成交量 < 20日均量 × 0.4（窒息临界线）</li>
+          <li>成交量创近20日新低</li>
+          <li>股价处于近30日低位（前期跌幅 > 10% 更好）</li>
+          <li>当日振幅 < 4%（窄幅整理）</li>
+          <li>✅ 量窒息后的次日若出现放量阳线，则为确认信号</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="first-second" onclick="toggleSelect(this)">
+    <div class="letter">4</div>
+    <div class="content">
+      <h3>⚡ 一进二（首板抓二板）</h3>
+      <p><strong>逻辑</strong>：个股昨日首次涨停（首板），今日有望走出连板。"首板选强、二板确认、板块共振、量价配合"</p>
+      <div style="margin-top:8px; font-size:13px">
+        <strong>量化规则</strong>：
+        <ul style="margin:4px 0 0 16px; padding:0">
+          <li>昨日首次涨停（南网/创业板均适用，但优选主板10%标的）</li>
+          <li>涨停封板时间在14:00前（早盘板质量更高）</li>
+          <li>昨日成交量温和放大（非巨量天量）</li>
+          <li>近10个交易日内未出现过涨停（首板属性确认）</li>
+          <li>流通市值30-200亿（适中盘位更适合连板）</li>
+          <li>✅ 板块效应加成：同板块今日有多只涨停</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="weak-strong" onclick="toggleSelect(this)">
+    <div class="letter">5</div>
+    <div class="content">
+      <h3>🔄 弱转强（竞价弱转强）</h3>
+      <p><strong>逻辑</strong>：个股昨日走势偏弱或炸板，但在今日集合竞价阶段出现超大单扫货，价格从跌停/平盘拉升至红盘，强弱逆转的信号</p>
+      <div style="margin-top:6px; font-size:13px">
+        <strong>量化规则</strong>：昨日涨停炸板或涨幅<3% → 竞价量比 > 3 → 竞价涨幅从-3%以下拉升至+2%以上
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="dragon" onclick="toggleSelect(this)">
+    <div class="letter">6</div>
+    <div class="content">
+      <h3>🐉 龙回头（可选）</h3>
+      <p><strong>逻辑</strong>：前期龙头股经历一轮主升浪（>30%）后大幅回调至关键支撑位，企稳后有望走第二波</p>
+      <div style="margin-top:6px; font-size:13px">
+        <strong>量化规则</strong>：前期涨幅 > 30% → 回调至20日/60日均线附近 → 缩量企稳且未破位
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:16px; font-size:14px; color:#475569">
+点击选择你觉得合适的策略。重点看修正后的「三一模式」——我的理解是集合竞价期间成交额、换手率、涨幅三项排市场/板块第一，对吗？还需要我补充其他经典战法吗？
+</p>

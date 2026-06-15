@@ -1,0 +1,189 @@
+<style>
+  .pet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .pet-card {
+    cursor: pointer;
+  }
+  .pet-stage {
+    min-height: 280px;
+    display: grid;
+    place-items: center;
+    background: #eef3ee;
+    border-bottom: 1px solid #d8ded8;
+  }
+  .dog {
+    position: relative;
+    width: 148px;
+    height: 172px;
+  }
+  .body {
+    position: absolute;
+    left: 33px;
+    bottom: 17px;
+    width: 85px;
+    height: 100px;
+    background: #b76f32;
+    border: 4px solid #4d3429;
+  }
+  .head {
+    position: absolute;
+    left: 24px;
+    top: 5px;
+    width: 102px;
+    height: 90px;
+    background: #c98242;
+    border: 4px solid #4d3429;
+    z-index: 2;
+  }
+  .ear {
+    position: absolute;
+    top: 21px;
+    width: 37px;
+    height: 67px;
+    background: #9b572d;
+    border: 4px solid #4d3429;
+    z-index: 1;
+  }
+  .ear.left { left: 4px; transform: rotate(15deg); }
+  .ear.right { right: 4px; transform: rotate(-15deg); }
+  .muzzle {
+    position: absolute;
+    left: 24px;
+    bottom: 9px;
+    width: 50px;
+    height: 35px;
+    border-radius: 45%;
+    background: #e8c794;
+  }
+  .eye {
+    position: absolute;
+    top: 31px;
+    width: 9px;
+    height: 12px;
+    border-radius: 50%;
+    background: #1d1a17;
+  }
+  .eye.left { left: 28px; }
+  .eye.right { right: 28px; }
+  .nose {
+    position: absolute;
+    left: 42px;
+    bottom: 27px;
+    width: 17px;
+    height: 13px;
+    border-radius: 50%;
+    background: #191715;
+  }
+  .leg {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 52px;
+    background: #bd783a;
+    border: 4px solid #4d3429;
+    z-index: 3;
+  }
+  .leg.left { left: 35px; }
+  .leg.right { right: 31px; }
+  .tail {
+    position: absolute;
+    right: 0;
+    bottom: 37px;
+    width: 63px;
+    height: 27px;
+    background: #b76f32;
+    border: 4px solid #4d3429;
+    transform: rotate(-28deg);
+    transform-origin: left center;
+    z-index: 0;
+  }
+  .sticker .body, .sticker .head { border-radius: 42% 42% 38% 38%; }
+  .sticker .ear { border-radius: 55% 45% 60% 40%; }
+  .sticker .leg { border-radius: 45%; }
+  .sticker .tail { border-radius: 70% 35% 70% 35%; }
+  .sticker .fur {
+    position: absolute;
+    inset: -6px;
+    border: 5px dotted #d89450;
+    border-radius: 45%;
+    opacity: .8;
+  }
+  .mascot .body { border-radius: 22px; }
+  .mascot .head { border-radius: 26px; }
+  .mascot .ear { border-radius: 16px; height: 58px; }
+  .mascot .tail { border-radius: 12px; width: 55px; }
+  .mascot .eye { width: 11px; height: 11px; }
+  .plush .body, .plush .head {
+    border-radius: 48%;
+    border-width: 3px;
+    box-shadow: inset 8px 7px 0 rgba(255,255,255,.15);
+  }
+  .plush .body { width: 92px; left: 29px; }
+  .plush .head { width: 110px; left: 19px; }
+  .plush .ear { border-radius: 50%; width: 43px; }
+  .plush .leg { border-radius: 50%; width: 29px; }
+  .plush .tail { border-radius: 50%; height: 34px; }
+  .recommend {
+    display: inline-block;
+    margin-top: 8px;
+    color: #20684a;
+    font-weight: 700;
+  }
+  @media (max-width: 800px) {
+    .pet-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<h2>金毛团应该长什么样？</h2>
+<p class="subtitle">三种都保留浅金长毛、奶油色口鼻、垂耳、黑鼻和蓬松尾巴。点击最喜欢的一张。</p>
+
+<div class="cards pet-grid">
+  <div class="card pet-card" data-choice="soft-sticker" onclick="toggleSelect(this)">
+    <div class="pet-stage">
+      <div class="dog sticker">
+        <div class="tail"></div><div class="body"><div class="fur"></div></div>
+        <div class="ear left"></div><div class="ear right"></div>
+        <div class="head"><div class="fur"></div><div class="eye left"></div><div class="eye right"></div><div class="muzzle"></div><div class="nose"></div></div>
+        <div class="leg left"></div><div class="leg right"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A · 柔和贴纸风</h3>
+      <p>毛茸茸但轮廓清楚，最接近照片气质，也适合小尺寸动画。</p>
+      <span class="recommend">我的推荐</span>
+    </div>
+  </div>
+
+  <div class="card pet-card" data-choice="clean-mascot" onclick="toggleSelect(this)">
+    <div class="pet-stage">
+      <div class="dog mascot">
+        <div class="tail"></div><div class="body"></div>
+        <div class="ear left"></div><div class="ear right"></div>
+        <div class="head"><div class="eye left"></div><div class="eye right"></div><div class="muzzle"></div><div class="nose"></div></div>
+        <div class="leg left"></div><div class="leg right"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B · 简洁吉祥物风</h3>
+      <p>形状利落、动作最清晰，桌面里辨识度最高，但毛感会少一些。</p>
+    </div>
+  </div>
+
+  <div class="card pet-card" data-choice="round-plush" onclick="toggleSelect(this)">
+    <div class="pet-stage">
+      <div class="dog plush">
+        <div class="tail"></div><div class="body"></div>
+        <div class="ear left"></div><div class="ear right"></div>
+        <div class="head"><div class="eye left"></div><div class="eye right"></div><div class="muzzle"></div><div class="nose"></div></div>
+        <div class="leg left"></div><div class="leg right"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C · 圆润毛绒风</h3>
+      <p>更像软软的玩偶，亲近感强，但和照片里的修长体型差异更大。</p>
+    </div>
+  </div>
+</div>

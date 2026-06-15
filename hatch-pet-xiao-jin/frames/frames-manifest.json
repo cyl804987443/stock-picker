@@ -1,0 +1,125 @@
+{
+  "ok": true,
+  "chroma_key": {
+    "hex": "#00FFFF",
+    "rgb": [
+      0,
+      255,
+      255
+    ],
+    "threshold": 96.0
+  },
+  "rows": [
+    {
+      "state": "idle",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/03.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/04.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/idle/05.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "running-right",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/03.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/04.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/05.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/06.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-right/07.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "running-left",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/03.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/04.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/05.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/06.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running-left/07.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "waving",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waving/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waving/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waving/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waving/03.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "jumping",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/03.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/jumping/04.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "failed",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/03.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/04.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/05.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/06.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/failed/07.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "waiting",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/03.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/04.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/waiting/05.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "running",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/03.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/04.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/running/05.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "review",
+      "frames": [
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/00.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/01.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/02.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/03.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/04.png",
+        "/Users/jackiechan/Desktop/codex project/hatch-pet-xiao-jin/frames/review/05.png"
+      ],
+      "method": "components"
+    }
+  ]
+}

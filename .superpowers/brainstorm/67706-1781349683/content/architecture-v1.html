@@ -1,0 +1,126 @@
+<h2>系统架构设计</h2>
+<p class="subtitle">整体架构、数据流和运行流程</p>
+
+<div class="section">
+  <h3>整体架构</h3>
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px; font-family:system-ui">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px">
+      <!-- 数据层 -->
+      <div style="background:white; border-radius:8px; padding:16px; border:1px solid #e2e8f0">
+        <div style="font-size:13px; color:#2563eb; font-weight:600; margin-bottom:8px">📡 数据层</div>
+        <div style="font-size:12px; background:#f1f5f9; padding:8px; border-radius:6px">
+          akshare → 日线数据<br>
+          akshare → 实时行情<br>
+          akshare → 财务数据<br>
+          akshare → 盘口/竞价数据
+        </div>
+      </div>
+      <!-- 策略引擎 -->
+      <div style="background:white; border-radius:8px; padding:16px; border:1px solid #e2e8f0">
+        <div style="font-size:13px; color:#059669; font-weight:600; margin-bottom:8px">⚙️ 策略引擎</div>
+        <div style="font-size:12px; background:#f1f5f9; padding:8px; border-radius:6px">
+          data_fetcher.py → 数据获取<br>
+          indicators.py → 指标计算<br>
+          strategies/ → 15个战法<br>
+          screener.py → 选股编排
+        </div>
+      </div>
+      <!-- 服务层 -->
+      <div style="background:white; border-radius:8px; padding:16px; border:1px solid #e2e8f0">
+        <div style="font-size:13px; color:#7c3aed; font-weight:600; margin-bottom:8px">🚀 服务层</div>
+        <div style="font-size:12px; background:#f1f5f9; padding:8px; border-radius:6px">
+          FastAPI 后端<br>
+          SQLite 数据库<br>
+          REST API<br>
+          APScheduler 定时
+        </div>
+      </div>
+    </div>
+
+    <!-- 前端 -->
+    <div style="background:white; border-radius:8px; padding:16px; border:1px solid #e2e8f0; margin-bottom:20px">
+      <div style="font-size:13px; color:#dc2626; font-weight:600; margin-bottom:8px">🖥️ 前端 SPA</div>
+      <div style="font-size:12px; display:grid; grid-template-columns:1fr 1fr; gap:8px">
+        <div style="background:#f1f5f9; padding:6px 8px; border-radius:4px">📋 选股结果页</div>
+        <div style="background:#f1f5f9; padding:6px 8px; border-radius:4px">📅 历史回顾</div>
+        <div style="background:#f1f5f9; padding:6px 8px; border-radius:4px">🔍 策略筛选</div>
+        <div style="background:#f1f5f9; padding:6px 8px; border-radius:4px">📊 个股详情</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3>每日运行流程</h3>
+  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px">
+
+    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+      <div style="background:#059669; color:white; padding:8px 14px; border-radius:8px; font-size:13px; text-align:center">
+        ⏰ 7:00<br><small>预选数据获取</small>
+      </div>
+      <div style="color:#94a3b8; font-size:20px">→</div>
+      <div style="background:#2563eb; color:white; padding:8px 14px; border-radius:8px; font-size:13px; text-align:center">
+        ⚙️ 7:00-7:30<br><small>运行底部爆量<br>量窒息 · 一进二 · 二进三<br>反包 · 仙人指路 等</small>
+      </div>
+      <div style="color:#94a3b8; font-size:20px">→</div>
+      <div style="background:#7c3aed; color:white; padding:8px 14px; border-radius:8px; font-size:13px; text-align:center">
+        💾 7:30<br><small>保存结果到数据库</small>
+      </div>
+      <div style="color:#94a3b8; font-size:20px">→</div>
+      <div style="background:#dc2626; color:white; padding:8px 14px; border-radius:8px; font-size:13px; text-align:center">
+        🌐 随时访问<br><small>打开网页查看</small>
+      </div>
+    </div>
+
+    <div style="margin-top:12px; display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+      <div style="background:#059669; color:white; padding:8px 14px; border-radius:8px; font-size:13px; text-align:center">
+        ⏰ 9:25<br><small>竞价数据获取</small>
+      </div>
+      <div style="color:#94a3b8; font-size:20px">→</div>
+      <div style="background:#2563eb; color:white; padding:8px 14px; border-radius:8px; font-size:13px; text-align:center">
+        ⚙️ 9:25-9:28<br><small>运行三一模式<br>竞价爆量 · 竞价弱转强</small>
+      </div>
+      <div style="color:#94a3b8; font-size:20px">→</div>
+      <div style="background:#7c3aed; color:white; padding:8px 14px; border-radius:8px; font-size:13px; text-align:center">
+        💾 9:28<br><small>追加保存竞价结果</small>
+      </div>
+      <div style="color:#94a3b8; font-size:20px">→</div>
+      <div style="background:#dc2626; color:white; padding:8px 14px; border-radius:8px; font-size:13px; text-align:center">
+        🌐 9:28后<br><small>刷新页面即可看到</small>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3>技术栈</h3>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+    <div style="background:#f1f5f9; border-radius:8px; padding:12px">
+      <div style="font-weight:600; font-size:14px; margin-bottom:4px">后端</div>
+      <div style="font-size:13px; color:#475569">
+        Python 3.11+ · FastAPI · SQLite（sqlalchemy）<br>
+        akshare（数据源） · APScheduler（定时）<br>
+        numpy/pandas（指标计算）
+      </div>
+    </div>
+    <div style="background:#f1f5f9; border-radius:8px; padding:12px">
+      <div style="font-weight:600; font-size:14px; margin-bottom:4px">前端</div>
+      <div style="font-size:13px; color:#475569">
+        纯 HTML + CSS + JavaScript（SPA）<br>
+        无框架依赖，轻量快速<br>
+        Fetch API 调用后端 REST 接口
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:8px; background:#fefce8; border-radius:8px; padding:10px 14px; font-size:13px">
+    💡 前端选纯前端框架-Free的方案，方便部署和分享。一个 Python 进程搞定全部，部署到任何 VPS/Docker 都极其简单
+  </div>
+</div>
+
+<p style="margin-top:16px; font-size:14px; color:#475569">
+整体架构长这样：数据层(akshare) → 策略引擎(indicator计算+战法筛选) → 服务层(FastAPI+SQLite) → 前端SPA<br>
+你觉得这个架构方向对吗？有没有需要调整的地方？
+</p>
